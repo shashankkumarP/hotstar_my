@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #append1{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+        margin-top: 10px;
+    }
+</style>
+<body>
+    <button id="home" onclick="homee()" >Home</button>
+    <div id="append1">
+
+    </div>
+</body>
+</html>
+<script>
+
+    function homee(){
+        window.location.href="index.html";
+    }
+    function create(w){
+        return document.createElement(w);
+    }
+
+    async function ft(){
+        const url = "https://api.themoviedb.org/3/trending/movie/day?api_key=f88e766d583bfa8d17734b1ce551f8a8";
+        let res = await fetch(url);
+        let data = await res.json();
+        let movie = data.results;
+        append(movie);
+
+    }
+    let a= "https://www.themoviedb.org/t/p/original";
+    function append(data){
+        data.forEach((el)=>{
+            let div1 = create("div");
+            let im = document.createElement("img");
+            im.src = `${a}${el.poster_path}`;
+            im.style.height='70%'
+            im.style.width="100%"
+            let p1 = document.createElement("p");
+            if(el.first_air_date==undefined) p1.innerText = `Released-date : ${el.release_date}`;
+            else p1.innerText = `Released-date : ${el.first_air_date}`;
+            let p2 = document.createElement("p");
+            p2.innerText =`imdb-rating : ${el.vote_average}`;
+            div1.append(im,p1,p2)
+            document.getElementById("append1").append(div1);
+        })
+            
+        
+    }
+
+    ft();
+</script>

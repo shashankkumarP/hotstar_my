@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #query{
+        width: 250px;
+        height: 20px;
+        /* overflow: scroll; */
+    }
+    #append{
+        width: 250px;
+        height: 250px;
+        overflow: scroll;
+    }
+    #divi{
+        display: flex;
+        margin-left: 45%;
+
+    }
+    #divi>button{
+        margin-left: 400px;
+        height: 30px;
+        margin-top: 15px;
+
+    }
+    #divi1{
+        display: flex;
+
+    }
+</style>
+<body>
+    <div id="divi">
+        <h1>Hotstar</h1>
+        <button id="trending" onclick="trend()">Trending movies in India</button>
+    </div>
+    <div id="divi1">
+        <div>
+            <input id="query" type="text" oninput="debounce(search,1500)">
+            <div id="append"></div>
+        </div>
+        
+        <div id="details"></div>
+    </div>
+    
+</body>
+</html>
+<script src="index.js"></script>
